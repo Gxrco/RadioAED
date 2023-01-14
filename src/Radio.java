@@ -145,4 +145,8 @@ public class Radio implements IRadio{
         }
         return slot;
     }
+
+    public int getSlotF() {
+        return slotF;
+    }
 }
