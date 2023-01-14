@@ -8,7 +8,7 @@ public class DriverProgram {
 
         while(radio.isOn()){
             display(radio);
-            menu(sc);
+            menu(sc, radio);
         }
     }
 
@@ -58,17 +58,36 @@ public class DriverProgram {
         }
     }
 
-    public static void menu(Scanner sc){
-        int opt = 0;
+    public static void menu(Scanner sc, Radio radio){
+        System.out.println("Opciones");
+        System.out.println("-".repeat(30));
+        System.out.println("1. Encender/Apagar \n2. Cambiar estacion \n3. Seleccionar una estacion guardada \n4. Guardar la estacion actual");
+        System.out.println("-".repeat(30));
+        int opt = sc.nextInt();
+        sc.nextLine();
         switch (opt){
             case 1:
-                //Apagado encendido
+                radio.off();
+                break;
             case 2:
-                //Siguiente/Anterior
+                System.out.println("Siguiente (F) / Anterior (B)");
+                String op = sc.nextLine();
+                if(op.equals("F")){
+                    radio.Forward();
+                } else if(op.equals("B")){
+                    radio.Backward();
+                }else {
+                    System.out.println("NO DISPONIBLE");
+                }
+                break;
             case 3:
-                //Acceso directo slots AM y FM
+                manageSlots(sc, radio);
             case 4:
-                //Guardar nueva estacion
+                if(radio.getFrequence().equalsIgnoreCase("AM")){
+                    radio.saveAMStation(radio.getAMActualStation(), radio.getAMSlot(radio.getSlotF()));
+                }else{
+                    radio.saveFMStation(radio.getFMActualStation(), (int) radio.getFMSlot(radio.getSlotF()));
+                }
         }
     }
 }

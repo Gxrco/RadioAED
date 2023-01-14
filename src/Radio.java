@@ -146,6 +146,10 @@ public class Radio implements IRadio{
         return slot;
     }
 
+    public int getSlotF() {
+        return slotF;
+    }
+
     public int[] getAMSavedStation() {
         return AMSavedStation;
     }
