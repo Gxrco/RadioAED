@@ -1,5 +1,15 @@
 public class Radio implements IRadio{
 
+
+    private boolean carStatus;
+    private String FMequence;
+    private double FMStation;
+    private int AMStation;
+    private int slot = 0;
+    private int[] AMSavedStation = new int[12];
+    private double[] FMSavedStation = new double[12];
+
+
     @Override
     public void on() {
 
@@ -16,6 +26,8 @@ public class Radio implements IRadio{
      */
     @Override
     public boolean isOn() {
+
+
         return false;
     }
 
