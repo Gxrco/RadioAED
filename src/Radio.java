@@ -1,7 +1,7 @@
 public class Radio implements IRadio{
 
 
-    private boolean carStatus;
+    private boolean carStatus= true;
     private String frequence;
     private double FMStation = 87.9;
     private int AMStation = 530;
@@ -45,7 +45,7 @@ public class Radio implements IRadio{
 
     @Override
     public String getFrequence() {
-        if(!frequence.equalsIgnoreCase("")){
+        if(!(frequence == null)){
             return frequence;
         }else{
             return null;
@@ -62,7 +62,7 @@ public class Radio implements IRadio{
             }
         }else{
             if(FMStation >= 87.9 && FMStation <= 107.7){
-                setFMActualStation(FMStation + 0.2);
+                setFMActualStation(Math.round((FMStation + 0.2)*100.0)/100.0);
             }else{
                 setFMActualStation(87.9);
             }
