@@ -7,13 +7,24 @@ public class DriverProgram {
         Radio radio = new Radio();
 
         while(radio.isOn()){
-            display();
+            display(radio);
             menu(sc);
         }
     }
 
-    public static void display(){
+    public static void display(Radio radio){
         //Mostrar lo necesario en pantalla
+        //Mostrando la frecuencia utiilzada.
+        if(radio.getFrequence() == null){
+            System.out.println("Current Frequency: No Frequency Selected.");
+        }
+        else if(radio.getFrequence().equalsIgnoreCase("FM")){
+            System.out.println("Current Frequency: " + radio.getFrequence());
+            System.out.println("Current Station: " + radio.getFMActualStation());
+        }
+        else if(radio.getFrequence().equalsIgnoreCase("AM"))
+            System.out.println("Current Frequency: " + radio.getFrequence());
+            System.out.println("Current Station: " + radio.getAMActualStation());
     }
 
     public static void manageSlots(Scanner sc, Radio radio){
