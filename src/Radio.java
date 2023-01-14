@@ -72,26 +72,46 @@ public class Radio implements IRadio{
 
     @Override
     public void setAMActualStation(int actualStation) {
-
+        this.AMStation= actualStation;
     }
-
+//cambiar a slotF
     @Override
     public void saveFMStation(double actualStation, int slot) {
-
+        FMSavedStation[(int) getFMSlot(slot)]= actualStation;
+        System.out.println("Se agrego la estacion con acceso directo");
     }
-
+    //cambiar a slotF
     @Override
     public void saveAMStation(int actualStation, int slot) {
-
+        AMSavedStation[getAMSlot(slot)]= actualStation;
+        System.out.println("Se agrego la estacion con acceso directo");
     }
 
     @Override
     public double getFMSlot(int slot) {
-        return 0;
+        for (int i = 0; i < FMSavedStation.length; i++) {
+            if (FMSavedStation[i] == 0.0) {
+                slot=i;
+                break;
+            }
+            if (i == 11 && FMSavedStation[11]!= 0.0) {
+                System.out.println("Usted ya tiene lleno la capacidad de accesos directos de estaciones");
+            }
+        }
+        return slot;
     }
 
     @Override
     public int getAMSlot(int slot) {
-        return 0;
+        for (int i = 0; i < AMSavedStation.length; i++) {
+            if (AMSavedStation[i] == 0) {
+                slot=i;
+                break;
+            }
+            if (i == 11 && AMSavedStation[11]!= 0) {
+                System.out.println("Usted ya tiene lleno la capacidad de accesos directos de estaciones");
+            }
+        }
+        return slot;
     }
 }
