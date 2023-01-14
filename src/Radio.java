@@ -47,27 +47,51 @@ public class Radio implements IRadio{
 
     @Override
     public void Forward() {
-
+        if(getFrequence().equals("AM")){
+            if(AMStation >= 530 && AMStation <= 1600){
+                setAMActualStation(AMStation + 10);
+            }else{
+                setAMActualStation(530);
+            }
+        }else{
+            if(FMStation >= 87.9 && FMStation <= 107.7){
+                setFMActualStation(FMStation + 0.2);
+            }else{
+                setFMActualStation(87.9);
+            }
+        }
     }
 
     @Override
     public void Backward() {
-
+        if(getFrequence().equals("AM")){
+            if(AMStation >= 540 && AMStation <= 1610){
+                setAMActualStation(AMStation - 10);
+            }else{
+                setAMActualStation(1610);
+            }
+        }else{
+            if(FMStation >= 87.7 && FMStation <= 107.9){
+                setFMActualStation(FMStation - 0.2);
+            }else{
+                setFMActualStation(107.9);
+            }
+        }
     }
 
     @Override
     public double getFMActualStation() {
-        return 0;
+        return FMStation;
     }
 
     @Override
     public int getAMActualStation() {
-        return 0;
+        return AMStation;
     }
 
     @Override
     public void setFMActualStation(double actualStation) {
-
+        FMStation = actualStation;
     }
 
     @Override
