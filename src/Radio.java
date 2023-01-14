@@ -108,13 +108,13 @@ public class Radio implements IRadio{
 //cambiar a slotF
     @Override
     public void saveFMStation(double actualStation, int slot) {
-        FMSavedStation[(int) getFMSlot(slot)]= actualStation;
+        FMSavedStation[(int) getFMSlot(slotF)]= actualStation;
         System.out.println("Se agrego la estacion con acceso directo");
     }
     //cambiar a slotF
     @Override
     public void saveAMStation(int actualStation, int slot) {
-        AMSavedStation[getAMSlot(slot)]= actualStation;
+        AMSavedStation[getAMSlot(slotF)]= actualStation;
         System.out.println("Se agrego la estacion con acceso directo");
     }
 
