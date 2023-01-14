@@ -2,22 +2,22 @@ public class Radio implements IRadio{
 
 
     private boolean carStatus;
-    private String FMequence;
-    private double FMStation;
-    private int AMStation;
-    private int slot = 0;
+    private String frequence;
+    private double FMStation = 87.9;
+    private int AMStation = 530;
+    private int slotF = 0;
     private int[] AMSavedStation = new int[12];
     private double[] FMSavedStation = new double[12];
 
 
     @Override
     public void on() {
-
+        carStatus = true;
     }
 
     @Override
     public void off() {
-
+        carStatus = false;
     }
 
     /***
@@ -26,9 +26,7 @@ public class Radio implements IRadio{
      */
     @Override
     public boolean isOn() {
-
-
-        return false;
+        return carStatus;
     }
 
     /***
@@ -37,12 +35,21 @@ public class Radio implements IRadio{
      */
     @Override
     public void setFrequence(String freq) throws Exception {
-
+        if(!(freq.equalsIgnoreCase("FM") || (freq.equalsIgnoreCase("AM")))){
+            throw new Exception("Only select the frequencies displayed (AM/FM).");
+        }
+        else{
+            frequence = freq;
+        }
     }
 
     @Override
     public String getFrequence() {
-        return null;
+        if(!frequence.equalsIgnoreCase("")){
+            return frequence;
+        }else{
+            return null;
+        }
     }
 
     @Override
