@@ -16,8 +16,35 @@ public class DriverProgram {
         //Mostrar lo necesario en pantalla
     }
 
-    public static void manageSlots(Scanner sc){
+    public static void manageSlots(Scanner sc, Radio radio){
         //Se selecciona el slot deseado en la frecuencia deseada
+        if (radio.getFrequence() == "AM") {
+            for (int i = 0; i < 11 ; i++) {
+                int o = i+1;
+                System.out.println(o + ". " + radio.getAMSavedStation());
+            }
+            System.out.println("Cual Slot elige? ");
+            int x= sc.nextInt();
+            if (radio.getAMSavedStation()[x]== 0){
+                System.out.println("Este Slot no tiene guardado una estacion");
+            }else {
+                int station= radio.getAMSavedStation()[x];
+                radio.setAMActualStation(station);
+            }
+        } else if (radio.getFrequence()== "FM") {
+            for (int i = 0; i < 11 ; i++) {
+                int o = i+1;
+                System.out.println(o + ". " + radio.getFMSavedStation());
+            }
+            System.out.println("Cual Slot elige? ");
+            int x= sc.nextInt();
+            if (radio.getFMSavedStation()[x]== 0.0){
+                System.out.println("Este Slot no tiene guardado una estacion");
+            }else {
+                double station= radio.getFMSavedStation()[x];
+                radio.setFMActualStation(station);
+            }
+        }
     }
 
     public static void menu(Scanner sc){
