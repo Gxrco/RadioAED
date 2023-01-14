@@ -146,7 +146,19 @@ public class Radio implements IRadio{
         return slot;
     }
 
-    public int getSlotF() {
-        return slotF;
+    public int[] getAMSavedStation() {
+        return AMSavedStation;
+    }
+
+    public void setAMSavedStation(int[] AMSavedStation) {
+        this.AMSavedStation = AMSavedStation;
+    }
+
+    public double[] getFMSavedStation() {
+        return FMSavedStation;
+    }
+
+    public void setFMSavedStation(double[] FMSavedStation) {
+        this.FMSavedStation = FMSavedStation;
     }
 }
