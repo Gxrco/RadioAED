@@ -1,6 +1,5 @@
 public class Radio implements IRadio{
 
-
     private boolean carStatus= true;
     private String frequence;
     private double FMStation = 87.9;
@@ -10,11 +9,17 @@ public class Radio implements IRadio{
     private double[] FMSavedStation = new double[12];
 
 
+    /**
+     * Metodo para encender la radio
+     */
     @Override
     public void on() {
         carStatus = true;
     }
 
+    /**
+     * Metodo para apagar la radio
+     */
     @Override
     public void off() {
         carStatus = false;
@@ -43,6 +48,10 @@ public class Radio implements IRadio{
         }
     }
 
+    /**
+     * Obtener la frecuencia en la que se ubica la radio
+     * @return AM o FM
+     */
     @Override
     public String getFrequence() {
         if(!(frequence == null)){
@@ -52,6 +61,9 @@ public class Radio implements IRadio{
         }
     }
 
+    /**
+     * Pasar a la siguiente estacion segun sea la frecuencia
+     */
     @Override
     public void Forward() {
         if(getFrequence().equals("AM")){
@@ -69,6 +81,9 @@ public class Radio implements IRadio{
         }
     }
 
+    /**
+     * Regresar a la anterior estacion segun sea la frecuencia
+     */
     @Override
     public void Backward() {
         if(getFrequence().equals("AM")){
@@ -86,38 +101,69 @@ public class Radio implements IRadio{
         }
     }
 
+    /**
+     * Obtener la estacion en radio FM actual
+     * @return Estacion actual
+     */
     @Override
     public double getFMActualStation() {
         return FMStation;
     }
 
+    /**
+     * Obtener la estacion en radio AM actual
+     * @return Estacion actual
+     */
     @Override
     public int getAMActualStation() {
         return AMStation;
     }
 
+    /**
+     * Establecer una nueva estacion FM
+     * @param actualStation Estacion actual
+     */
     @Override
     public void setFMActualStation(double actualStation) {
         FMStation = actualStation;
     }
 
+    /**
+     * Establecer una nueva estacion AM
+     * @param actualStation Estacion actual
+     */
     @Override
     public void setAMActualStation(int actualStation) {
         this.AMStation= actualStation;
     }
-//cambiar a slotF
+
+    /**
+     * Guardar la estacion de radio en uno de los slots para cada frecuencia
+     * @param actualStation Estacion actual
+     * @param slot Espacio a ocupar
+     */
     @Override
     public void saveFMStation(double actualStation, int slot) {
         FMSavedStation[(int) getFMSlot(slotF)]= actualStation;
         System.out.println("Se agrego la estacion con acceso directo");
     }
-    //cambiar a slotF
+
+    /**
+     * Guardar la estacion de radio en uno de los slots para cada frecuencia
+     * @param actualStation Estacion actual
+     * @param slot Espacio a ocupar
+     */
     @Override
     public void saveAMStation(int actualStation, int slot) {
         AMSavedStation[getAMSlot(slotF)]= actualStation;
         System.out.println("Se agrego la estacion con acceso directo");
     }
 
+    /**
+     *  Se utilizar oara obtener el slot desocupado de la lista de FM
+     * @param slot Espacio
+     * @return Slot disponible
+     */
     @Override
     public double getFMSlot(int slot) {
         for (int i = 0; i < FMSavedStation.length; i++) {
@@ -132,6 +178,11 @@ public class Radio implements IRadio{
         return slot;
     }
 
+    /**
+     *  Se utilizar oara obtener el slot desocupado de la lista de AM
+     * @param slot Espacio
+     * @return Slot disponible
+     */
     @Override
     public int getAMSlot(int slot) {
         for (int i = 0; i < AMSavedStation.length; i++) {
@@ -146,23 +197,27 @@ public class Radio implements IRadio{
         return slot;
     }
 
+    /**
+     * Obtener el slot de espacio
+     * @return Variable de espacio
+     */
     public int getSlotF() {
         return slotF;
     }
 
+    /**
+     * Obtener el Array de estaciones guardadas AM
+     * @return ArrayAM
+     */
     public int[] getAMSavedStation() {
         return AMSavedStation;
     }
 
-    public void setAMSavedStation(int[] AMSavedStation) {
-        this.AMSavedStation = AMSavedStation;
-    }
-
+    /**
+     * Obtener el Array de estaciones guardadas FM
+     * @return ArrayAM
+     */
     public double[] getFMSavedStation() {
         return FMSavedStation;
-    }
-
-    public void setFMSavedStation(double[] FMSavedStation) {
-        this.FMSavedStation = FMSavedStation;
     }
 }

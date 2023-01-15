@@ -2,6 +2,10 @@ import java.util.Scanner;
 
 public class DriverProgram {
 
+    /**
+     * Metodo para ejecutar el programa
+     * @param args argumentos
+     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Radio radio = new Radio();
@@ -12,9 +16,11 @@ public class DriverProgram {
         }
     }
 
+    /**
+     * Metodo para mostrar al usuario la informacion de la radio
+     * @param radio Objeto de radio
+     */
     public static void display(Radio radio){
-        //Mostrar lo necesario en pantalla
-        //Mostrando la frecuencia utiilzada.
         if(radio.getFrequence() == null){
             System.out.println("Current Frequency: No Frequency Selected.");
             System.out.println("Current Station: No Station Selected");
@@ -29,9 +35,14 @@ public class DriverProgram {
         }
     }
 
+    /**
+     * Manejo de las diferentes estaciones guardadas
+     * @param sc Scanner
+     * @param radio Objeto de radio
+     */
     public static void manageSlots(Scanner sc, Radio radio){
         //Se selecciona el slot deseado en la frecuencia deseada
-        if (radio.getFrequence() == "AM") {
+        if (radio.getFrequence().equals("AM")) {
             for (int i = 0; i < 12 ; i++) {
                 int o = i+1;
                 System.out.println(o + ". " + radio.getAMSavedStation()[i]);
@@ -44,7 +55,7 @@ public class DriverProgram {
                 int station= radio.getAMSavedStation()[x-1];
                 radio.setAMActualStation(station);
             }
-        } else if (radio.getFrequence()== "FM") {
+        } else if (radio.getFrequence().equals("FM")){
             for (int i = 0; i < 12 ; i++) {
                 int o = i+1;
                 System.out.println(o + ". " + radio.getFMSavedStation()[i]);
@@ -60,6 +71,11 @@ public class DriverProgram {
         }
     }
 
+    /**
+     * Opciones para el usuario
+     * @param sc Scanner
+     * @param radio Objeto radio
+     */
     public static void menu(Scanner sc, Radio radio){
         System.out.println("Opciones");
         System.out.println("-".repeat(30));
